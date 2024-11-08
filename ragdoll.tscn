@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3a70j70rxqye"]
+
+[ext_resource type="Texture2D" uid="uid://bkxa4l84ftrik" path="res://Assets/WormBody.png" id="1_vjenu"]
+[ext_resource type="Texture2D" uid="uid://5ovshsywym61" path="res://Assets/WormButt.png" id="2_01jlx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1ep4"]
+radius = 15.84
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lk1u7"]
+radius = 10.95
+height = 66.55
+
+[node name="Ragdoll" type="Node2D"]
+
+[node name="Body" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_f1ep4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+modulate = Color(1, 1, 1, 0.505882)
+texture = ExtResource("1_vjenu")
+
+[node name="Butt" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Butt"]
+position = Vector2(0, 45)
+shape = SubResource("CapsuleShape2D_lk1u7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Butt"]
+modulate = Color(0.317647, 0.317647, 0.317647, 0.52549)
+position = Vector2(-2.98023e-08, 46)
+scale = Vector2(0.6875, 1)
+texture = ExtResource("2_01jlx")
