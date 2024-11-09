@@ -10,27 +10,28 @@ size = Vector2(298, 29)
 [node name="Testing Area" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1088.0
-offset_bottom = 596.0
+offset_left = 9.0
+offset_top = -21.0
+offset_right = 1097.0
+offset_bottom = 575.0
 color = Color(0.412152, 0.412153, 0.412152, 1)
 
 [node name="Ragdoll" parent="." instance=ExtResource("1_dihbt")]
 position = Vector2(518, 246)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-self_modulate = Color(0.462291, 0.462291, 0.462291, 1)
+[node name="Platform1" type="StaticBody2D" parent="."]
 rotation = 0.492396
 physics_material_override = SubResource("PhysicsMaterial_j21m0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
 position = Vector2(508.613, 106.172)
 rotation = -0.10472
 shape = SubResource("RectangleShape2D_5kasb")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="Platform2" type="StaticBody2D" parent="."]
 rotation = 0.000623066
 physics_material_override = SubResource("PhysicsMaterial_j21m0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 position = Vector2(663.286, 459.587)
 shape = SubResource("RectangleShape2D_5kasb")
