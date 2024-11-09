@@ -1,16 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3a70j70rxqye"]
 
-[ext_resource type="Script" path="res://ragdoll.gd" id="1_ciewc"]
+[ext_resource type="Script" path="res://Player.gd" id="1_wpxfa"]
 [ext_resource type="Texture2D" uid="uid://5ovshsywym61" path="res://Assets/WormButt.png" id="2_01jlx"]
 [ext_resource type="Texture2D" uid="uid://dwdeyp6lg3qcs" path="res://Assets/WormBodyKnot.png" id="2_uvs2n"]
 [ext_resource type="Texture2D" uid="uid://bq05i2lo5w4md" path="res://Assets/FishingLine.png" id="4_q601w"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f1ep4"]
-radius = 15.84
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lk1u7"]
 radius = 9.0
 height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1ep4"]
+radius = 15.84
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_s3110"]
 a = Vector2(0, -671)
@@ -18,27 +18,12 @@ b = Vector2(0, 80)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gjnj6"]
 
-[node name="Ragdoll" type="Node2D"]
-script = ExtResource("1_ciewc")
-
-[node name="WormBodyKnot" type="RigidBody2D" parent="." groups=["worm_body"]]
-linear_velocity = Vector2(500, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WormBodyKnot"]
-shape = SubResource("CircleShape2D_f1ep4")
-
-[node name="Sprite2D" type="Sprite2D" parent="WormBodyKnot"]
-position = Vector2(-3, 0)
-texture = ExtResource("2_uvs2n")
-
-[node name="Body_Butt_PinJoint" type="PinJoint2D" parent="."]
-position = Vector2(0, 14.685)
-node_a = NodePath("../WormBodyKnot")
-node_b = NodePath("../WormButt")
-disable_collision = false
+[node name="Player" type="Node2D"]
 
 [node name="WormButt" type="RigidBody2D" parent="."]
 position = Vector2(0, 2.995)
+mass = 5.0
+gravity_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WormButt"]
 position = Vector2(0, 43.005)
@@ -48,6 +33,22 @@ shape = SubResource("CapsuleShape2D_lk1u7")
 position = Vector2(-9.53674e-07, 34.005)
 scale = Vector2(0.421875, 0.999297)
 texture = ExtResource("2_01jlx")
+
+[node name="Body_Butt_PinJoint" type="PinJoint2D" parent="."]
+position = Vector2(0, 17.63)
+node_a = NodePath("../WormBodyKnot")
+node_b = NodePath("../WormButt")
+disable_collision = false
+
+[node name="WormBodyKnot" type="RigidBody2D" parent="." groups=["worm_body"]]
+script = ExtResource("1_wpxfa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WormBodyKnot"]
+shape = SubResource("CircleShape2D_f1ep4")
+
+[node name="Sprite2D" type="Sprite2D" parent="WormBodyKnot"]
+position = Vector2(-3, 0)
+texture = ExtResource("2_uvs2n")
 
 [node name="Body_FishingLine_PinJoint" type="PinJoint2D" parent="."]
 position = Vector2(0, -20.225)
@@ -75,3 +76,5 @@ node_b = NodePath("../FishingLine")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FishingLineAnchor"]
 position = Vector2(0, -783)
 shape = SubResource("CircleShape2D_gjnj6")
+
+[connection signal="visibility_changed" from="WormBodyKnot" to="WormBodyKnot" method="_on_visibility_changed"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cksuy4obouk1p"]
+
+[ext_resource type="Texture2D" uid="uid://csmsvyoda1ko5" path="res://Assets/fish.png" id="1_486gv"]
+[ext_resource type="Script" path="res://Enemy.gd" id="1_thgld"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_thgld")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(29, -14, 21, -7, 16, -13, 5, -16, -11, -17, -25, -13, -31, -6, -31, 4, -27, 11, -11, 16, 3, 16, 18, 10, 21, 5, 30, 11)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_486gv")
